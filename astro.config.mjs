@@ -1,13 +1,25 @@
 import { defineConfig } from 'astro/config';
+import icon from 'astro-icon';
+import cloudflare from '@astrojs/cloudflare';
+import tailwind from '@astrojs/tailwind';
 
-import cloudflare from "@astrojs/cloudflare";
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  output: 'server',
   adapter: cloudflare({
     platformProxy: {
-      enabled: true
-    }
-  })
+      enabled: true,
+    },
+  }),
+  integrations: [icon(), tailwind()],
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
+    shikiConfig: {
+      theme: 'one-dark-pro',
+    },
+  },
 });

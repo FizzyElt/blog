@@ -1,0 +1,27 @@
+---
+import { Icon } from 'astro-icon/components';
+import { TWITTER_LINK, GITHUB_LINK, MASTODON_LINK, EMAIL } from '../config';
+---
+
+<footer class="py-8 px-4">
+  <div
+    class="max-w-screen-md container mx-auto flex items-center gap-y-2 sm:flex-row flex-col-reverse"
+  >
+    <a href={`mailto:${EMAIL}`} class="flex gap-x-2 items-center">
+      <Icon name="mdi:email" size={24} />
+      <span>{EMAIL}</span>
+    </a>
+    <div class="flex-auto"></div>
+    <div class="flex gap-x-4">
+      <a href={GITHUB_LINK} title="FizzyElt Github" aria-label="FizzyElt Github">
+        <Icon name="mdi:github" size={24} />
+      </a>
+      <a href={TWITTER_LINK} title="FizzyElt Twitter" aria-label="FizzyElt Twitter">
+        <Icon name="mdi:twitter" size={24} />
+      </a>
+      <a href={MASTODON_LINK} title="FizzyElt Mastodon" aria-label="FizzyElt Mastodon">
+        <Icon name="mdi:mastodon" size={24} />
+      </a>
+    </div>
+  </div>
+</footer>

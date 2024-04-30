@@ -1,0 +1,15 @@
+---
+import { getCollection } from 'astro:content';
+import MarkdownPostLayout from '../../layouts/PostLayout.astro';
+import { compareDesc } from 'date-fns';
+
+const recentPost = await getCollection('posts')
+  .then((posts) => posts.sort((a, b) => compareDesc(a.data.pubDate, b.data.pubDate)))
+  .then((posts) => posts[0]);
+
+const { Content } = await recentPost.render();
+---
+
+<MarkdownPostLayout frontmatter={recentPost.data}>
+  <Content />
+</MarkdownPostLayout>

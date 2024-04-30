@@ -1,0 +1,53 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<button id="theme-switch">
+  <div id="icon-moon">
+    <Icon name="mdi:moon-and-stars" size={24} />
+  </div>
+  <div id="icon-sunny">
+    <Icon name="mdi:white-balance-sunny" size={24} />
+  </div>
+</button>
+<script>
+  const setIcon = (mode: string) => {
+    const iconMoon = document.getElementById('icon-moon');
+    const iconSunny = document.getElementById('icon-sunny');
+    if (mode === 'dark') {
+      iconMoon?.style.setProperty('display', 'none');
+      iconSunny?.style.setProperty('display', 'block');
+      return;
+    }
+
+    iconMoon?.style.setProperty('display', 'block');
+    iconSunny?.style.setProperty('display', 'none');
+  };
+
+  const hanleSetTheme = (mode: string) => {
+    setIcon(mode);
+    const isDark = mode === 'dark';
+    if (isDark) {
+      document.body.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      return;
+    }
+
+    document.body.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
+  };
+
+  (() => {
+    let mode = localStorage.getItem('theme') || '';
+
+    hanleSetTheme(mode);
+
+    const btn = document.getElementById('theme-switch');
+
+    btn?.addEventListener('click', () => {
+      const newMode = mode === 'dark' ? 'light' : 'dark';
+      hanleSetTheme(newMode);
+      mode = newMode;
+    });
+  })();
+</script>

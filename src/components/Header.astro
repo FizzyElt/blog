@@ -1,0 +1,21 @@
+---
+import { Icon } from 'astro-icon/components';
+import { AVATAR_LINK, GITHUB_LINK } from '../config';
+import ThemeSwitcher from './ThemeSwitcher.astro';
+---
+
+<header class="p-4">
+  <nav class="max-w-screen-md mx-auto flex items-center">
+    <a href="/" class="flex gap-2 items-center">
+      <img class="w-10 h-10 rounded-full" src={AVATAR_LINK} />
+      <span class="text-lg font-bold">FizzyElt</span>
+    </a>
+    <div class="flex-auto"></div>
+    <div class="flex gap-x-4">
+      <a href={GITHUB_LINK} target="_blank">
+        <Icon size={24} name="mdi:github" />
+      </a>
+      <ThemeSwitcher />
+    </div>
+  </nav>
+</header>

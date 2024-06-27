@@ -142,6 +142,7 @@ const result = replaceEqualDeep(oldData, newData);
 1. 第一次從 API 取到 data 時 `undefined -> data`
 2. ❌ 第二次重新 refetch 成功後拿到新值 `oldData -> newData`
 3. ❌ 第 N 次重新 refetch 成功後拿到新值 `oldData -> newData`
+
 第二個
 1. flag = `false` 情況下第一次從 API 取到 data 時 `undefined -> data(false)`
 2. flag 由 `false` 轉成 `true` 時重發 API 等待時間 `data(false) -> undefined`

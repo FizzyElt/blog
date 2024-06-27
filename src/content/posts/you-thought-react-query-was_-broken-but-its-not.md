@@ -99,6 +99,8 @@ const newData = {
     name: 'john',
     age: 30
 }
+
+const result = replaceEqualDeep(oldData, newData);
 ```
 
 [![](https://mermaid.ink/img/pako:eNqFkMtqAzEMRX_FqJsWEsjai0LLrLNpd-MsVFvjMfEj-EEpIf9euZOGlAYiYyFfjqVrH0EnQyBh8ulTz5ireH9VUXBoj6UMNAmWoyUjSs1pT_JhM20WYsmlfdiMh1lkKs3XRexhXCZdXYqXlj2YGg1W3Ekpfzuv188iYqCxp90N9odASyPvq4sLSZGLvv64UZCysy4-Jm8G7vGk4J41Jq_G8Wl7w9M_6OVs62IGVhAoB3SG__XYZQV1pkAKJJcG8757OTGHraa3r6hB1txoBTk1O4Oc0Bc-tQMPosEhvyic1dM3mr2JdA?type=png)](https://mermaid.live/edit#pako:eNqFkMtqAzEMRX_FqJsWEsjai0LLrLNpd-MsVFvjMfEj-EEpIf9euZOGlAYiYyFfjqVrH0EnQyBh8ulTz5ireH9VUXBoj6UMNAmWoyUjSs1pT_JhM20WYsmlfdiMh1lkKs3XRexhXCZdXYqXlj2YGg1W3Ekpfzuv188iYqCxp90N9odASyPvq4sLSZGLvv64UZCysy4-Jm8G7vGk4J41Jq_G8Wl7w9M_6OVs62IGVhAoB3SG__XYZQV1pkAKJJcG8757OTGHraa3r6hB1txoBTk1O4Oc0Bc-tQMPosEhvyic1dM3mr2JdA)
@@ -124,11 +126,13 @@ const newData = {
         data: "content"
     }
 }
+
+const result = replaceEqualDeep(oldData, newData);
 ```
 
 [![](https://mermaid.ink/img/pako:eNqFkstqwzAQRX_FqJsWEshai0KLl6WFpjs7i7E1lpXYUhhJlBLy7x1XcZNgN5VBj6szY3PwQdROoZCi6dxn3QKF7OW9tBmPugPvc2wyjq1GlflAbofybtWsEpFmHytNsG8zQh-7kMJhKENYB-Ns9vF8TpkqFATYSCnHzsvl45C_Qo-F5Wkzg4_Qk8YC9G2EqACiizfcgNexequ2hf9ZrrumqxHMuSqVJggttx2eKwmlcGS0sfeuU0PFQyn-M3Lecc3Fx_FpzsgEmhqZIicjN5C_PPxejeCMB7EQPVIPRvGfdBjiUoQWeyyF5K0C2g0ajsxBDG79ZWshA0VcCHJRt0I20Hk-xT03xtwAy-xP6fEbf4nTDg?type=png)](https://mermaid.live/edit#pako:eNqFkstqwzAQRX_FqJsWEshai0KLl6WFpjs7i7E1lpXYUhhJlBLy7x1XcZNgN5VBj6szY3PwQdROoZCi6dxn3QKF7OW9tBmPugPvc2wyjq1GlflAbofybtWsEpFmHytNsG8zQh-7kMJhKENYB-Ns9vF8TpkqFATYSCnHzsvl45C_Qo-F5Wkzg4_Qk8YC9G2EqACiizfcgNexequ2hf9ZrrumqxHMuSqVJggttx2eKwmlcGS0sfeuU0PFQyn-M3Lecc3Fx_FpzsgEmhqZIicjN5C_PPxejeCMB7EQPVIPRvGfdBjiUoQWeyyF5K0C2g0ajsxBDG79ZWshA0VcCHJRt0I20Hk-xT03xtwAy-xP6fEbf4nTDg)
 
-這樣我們可以看出在部份資料修改時整個父層結構都會被更新，詳細可以看[replaceEqualDeep](https://github.com/TanStack/query/blob/main/packages/query-core/src/utils.ts#L244) 實作，或是參考[測試案例](https://github.com/TanStack/query/blob/09382a4b430f3decb933b56a124ccd4772f042d4/packages/query-core/src/__tests__/utils.test.tsx#L140)
+這樣我們可以看出在部份資料修改時整個父層結構都會被更新，詳細可以看 [replaceEqualDeep](https://github.com/TanStack/query/blob/main/packages/query-core/src/utils.ts#L244) 實作，或是參考[測試案例](https://github.com/TanStack/query/blob/09382a4b430f3decb933b56a124ccd4772f042d4/packages/query-core/src/__tests__/utils.test.tsx#L140)
 
 到此，剛剛的疑惑可以解開了，因為我們 API data 一直沒變，結構共享後的參考也會維持，所以 `useEffect` 會偵測不到更新。
 

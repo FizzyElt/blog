@@ -24,6 +24,11 @@ description: "我的使命"
 - Haskell
 - Racket
 
+## 我通常在工作中做什麼
+
+- 關注於開發者體驗，引導成員識別各種方法對自己的影響
+- 對各成員間較模糊的 coding style 提供一個思考流程與決策邏輯
+
 ## 貢獻
 
 - [Functional Programming](https://github.com/FizzyElt/functional-programming) 名詞及知識點整理

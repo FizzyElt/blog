@@ -8,12 +8,12 @@ import rehypeKatex from "rehype-katex";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://fizzyelt.com",
   output: "server",
   adapter: cloudflare({
     platformProxy: {
       enabled: true,
     },
-    
   }),
   integrations: [icon(), tailwind()],
   markdown: {

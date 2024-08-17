@@ -6,12 +6,11 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   safelist: ["dark"],
   theme: {
-    colors: {
-      ...colors,
-      primaryBgColor: colors.white,
-      primaryDarkBgColor: colors.gray[800],
-    },
     extend: {
+      colors: {
+        primaryBgColor: colors.white,
+        primaryDarkBgColor: colors.gray[800],
+      },
       typography: (theme) => ({
         invert: {
           css: {

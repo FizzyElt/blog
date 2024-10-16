@@ -1,0 +1,31 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+---
+
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="">
+    <main class="w-full min-h-screen flex flex-col dark:bg-primaryDarkBgColor dark:text-white">
+      <Header />
+      <div class="flex-auto py-6 px-4 md:px-0">
+        <section class="py-10">
+          <div class="container max-w-screen-md px-4 mx-auto">
+            <div class="flex flex-col items-center justify-center gap-y-8">
+              <img class="w-1/4 h-1/4 rounded-full" src="/public/404.png" />
+
+              <h2 class="text-7xl font-bold">404</h2>
+              <p class="text-center">頁面不存在</p>
+            </div>
+          </div>
+        </section>
+      </div>
+      <Footer />
+    </main>
+  </body>
+</html>

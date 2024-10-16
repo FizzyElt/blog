@@ -12,10 +12,10 @@
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.3",
+    "@astrojs/check": "^0.9.4",
     "@astrojs/cloudflare": "^11.1.0",
     "@iconify-json/mdi": "^1.2.0",
-    "astro": "^4.15.10",
+    "astro": "^4.16.5",
     "astro-icon": "^1.1.1",
     "date-fns": "^4.1.0",
     "rehype-katex": "^7.0.1",
@@ -23,7 +23,7 @@
     "typescript": "^5.6.2"
   },
   "devDependencies": {
-    "@astrojs/tailwind": "^5.1.1",
+    "@astrojs/tailwind": "^5.1.2",
     "@biomejs/biome": "^1.9.3",
     "@cloudflare/workers-types": "^4.20240925.0",
     "@tailwindcss/typography": "^0.5.15",

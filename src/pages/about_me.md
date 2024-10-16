@@ -1,5 +1,5 @@
 ---
-layout: "../layouts/BaseLayout.astro"
+layout: "../layouts/MarkdownBaseLayout.astro"
 title: "關於我"
 description: "我的使命"
 ---

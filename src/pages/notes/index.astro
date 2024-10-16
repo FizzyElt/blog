@@ -1,0 +1,36 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Profile from '../../components/Profile.astro';
+import { compareDesc } from 'date-fns';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../../config';
+import { getCollection } from 'astro:content';
+
+const notes = await getCollection('notes').then((posts) =>
+  posts.sort((a, b) => compareDesc(a.data.pubDate, b.data.pubDate)).slice(0, 3)
+);
+
+const noteContents = await Promise.all(
+  notes.map((note) => note.render().then(({ Content }) => Content))
+);
+---
+
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body class="">
+    <main class="w-full min-h-screen flex flex-col dark:bg-primaryDarkBgColor dark:text-white">
+      <Header />
+      <Profile />
+      <main class="flex-auto py-6 px-4 md:px-0">
+        <content class="container max-w-screen-sm mx-auto flex flex-col divide-y">
+          {noteContents.map((Content) => <Content />)}
+        </content>
+      </main>
+      <Footer />
+    </main>
+  </body>
+</html>

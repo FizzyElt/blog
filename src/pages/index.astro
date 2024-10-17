@@ -1,11 +1,8 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
 import Profile from '../components/Profile.astro';
 import PostCard from '../components/PostCard.astro';
-import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+import HomeLayout from '../layouts/HomeLayout.astro';
 import { compareDesc } from 'date-fns';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('posts').then((posts) =>
@@ -13,25 +10,11 @@ const posts = await getCollection('posts').then((posts) =>
 );
 ---
 
-<!doctype html>
-<html lang="zh-Hant">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body class="">
-    <main class="w-full min-h-screen flex flex-col dark:bg-primaryDarkBgColor dark:text-white">
-      <div class="flex max-w-screen-md container py-4 px-4 md:px-0 mx-auto justify-end">
-        <div class="flex-auto"></div>
-        <a href="about_me" class="mr-4">About Me</a>
-        <ThemeSwitcher />
-      </div>
-      <Profile />
-      <main class="flex-auto py-6 px-4 md:px-0">
-        <content class="container max-w-screen-sm mx-auto flex flex-col divide-y">
-          {posts.map((post) => <PostCard post={post} />)}
-        </content>
-      </main>
-      <Footer />
-    </main>
-  </body>
-</html>
+<HomeLayout>
+  <Profile />
+  <main class="flex-auto py-6 px-4 md:px-0">
+    <content class="container max-w-screen-sm mx-auto flex flex-col divide-y">
+      {posts.map((post) => <PostCard post={post} />)}
+    </content>
+  </main>
+</HomeLayout>

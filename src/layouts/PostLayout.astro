@@ -2,6 +2,7 @@
 import Tag from '../components/Tag.astro';
 import BaseLayout from './BaseLayout.astro';
 import { format } from 'date-fns';
+import MarkdownBaseLayout from './MarkdownBaseLayout.astro';
 
 export interface Props {
   frontmatter: {
@@ -19,8 +20,8 @@ const {
 } = Astro.props as Props;
 ---
 
-<BaseLayout title={title} description={description} heroImage={heroImage}>
-  <article class="flex flex-col gap-y-4 md:px-0 px-4">
+<MarkdownBaseLayout content={{ title, description, heroImage: heroImage }}>
+  <Fragment slot="before-content">
     <section class="flex flex-col gap-y-2">
       <h2 class="text-2xl font-bold">{title || ''}</h2>
       <div class="flex flex-wrap gap-x-2 gap-y-2">
@@ -29,8 +30,6 @@ const {
       <time datetime={format(pubDate, 'yyyy/MM/dd')}>{format(pubDate, 'yyyy/MM/dd')}</time>
     </section>
     <hr />
-    <div class="max-w-none prose dark:prose-invert">
-      <slot />
-    </div>
-  </article>
-</BaseLayout>
+  </Fragment>
+  <slot />
+</MarkdownBaseLayout>

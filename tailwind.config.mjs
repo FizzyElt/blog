@@ -1,4 +1,5 @@
-const colors = require("tailwindcss/colors");
+import colors from "tailwindcss/colors";
+import typography from "@tailwindcss/typography";
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
@@ -49,6 +50,7 @@ module.exports = {
             a: {
               "overflow-wrap": "break-word",
             },
+
             ".astro-code code": {
               whiteSpace: "inherit",
             },
@@ -63,5 +65,5 @@ module.exports = {
   variants: {
     extend: { typography: ["dark"] },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [typography],
 };

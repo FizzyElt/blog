@@ -1,26 +1,23 @@
 ---
 import Tag from '../components/Tag.astro';
-import BaseLayout from './BaseLayout.astro';
 import { format } from 'date-fns';
 import MarkdownBaseLayout from './MarkdownBaseLayout.astro';
 
 export interface Props {
   frontmatter: {
     title?: string;
-    description?: string;
     pubDate: Date;
     updatedDate?: Date;
     tags?: string[];
-    heroImage?: string;
   };
 }
 
 const {
-  frontmatter: { title = '', description = '', pubDate, heroImage, tags = [] },
+  frontmatter: { title = '', pubDate, tags = [] },
 } = Astro.props as Props;
 ---
 
-<MarkdownBaseLayout content={{ title, description, heroImage: heroImage }}>
+<MarkdownBaseLayout content={{ title }}>
   <Fragment slot="before-content">
     <section class="flex flex-col gap-y-2">
       <h2 class="text-2xl font-bold">{title || ''}</h2>
@@ -31,5 +28,6 @@ const {
     </section>
     <hr />
   </Fragment>
+
   <slot />
 </MarkdownBaseLayout>

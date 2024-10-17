@@ -1,0 +1,21 @@
+---
+import PageLayout from './PageLayout.astro';
+import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
+---
+
+<PageLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <Fragment slot="header">
+    <div class="flex max-w-screen-md container py-4 px-4 md:px-0 mx-auto justify-end">
+      <div class="flex-auto"></div>
+      <a href="about_me" class="mr-4">About Me</a>
+      <ThemeSwitcher />
+    </div>
+  </Fragment>
+  <slot />
+
+  <Fragment slot="footer">
+    <Footer />
+  </Fragment>
+</PageLayout>

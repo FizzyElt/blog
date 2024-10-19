@@ -1,14 +1,26 @@
 ---
 import { NICK_NAME, AVATAR_LINK } from '../config';
+
+export interface ProfileProps {
+  avatarLink?: string;
+  nickName?: string;
+  description?: string;
+}
+
+const {
+  avatarLink = AVATAR_LINK,
+  nickName = NICK_NAME,
+  description = '這裡是我紀錄想法的地方，包含程式、生活、心靈成長',
+} = Astro.props as ProfileProps;
 ---
 
 <section class="py-10">
   <div class="container max-w-screen-md px-4 mx-auto">
     <div class="flex flex-col items-center justify-center gap-y-8">
-      <img class="w-1/4 h-1/4 rounded-full" src={AVATAR_LINK} />
+      <img class="w-1/4 h-1/4 rounded-full" src={avatarLink} />
 
-      <h2 class="text-2xl font-bold">{NICK_NAME}</h2>
-      <p class="text-center">這裡是我紀錄想法的地方，包含程式、生活、心靈成長</p>
+      <h2 class="text-2xl font-bold">{nickName}</h2>
+      <p class="text-center">{description}</p>
     </div>
   </div>
 </section>

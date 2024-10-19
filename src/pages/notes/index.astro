@@ -3,6 +3,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Profile from '../../components/Profile.astro';
 import Porse from '../../components/Porse.astro';
+import Tag from '../../components/Tag.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
 import { compareDesc, format } from 'date-fns';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../config';
@@ -12,11 +13,9 @@ const notes = await getCollection('notes').then((notes) =>
   notes.sort((a, b) => compareDesc(a.data.pubDate, b.data.pubDate))
 );
 
-const noteContents = await Promise.all(
-  notes.map((note) =>
-    note.render().then(({ Content }) => ({ slug: note.slug, pubDate: note.data.pubDate, Content }))
-  )
-);
+const [lastNote, restNotes] = [notes[0], notes.slice(1)];
+
+const { Content } = await lastNote.render();
 ---
 
 <PageLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -33,20 +32,55 @@ const noteContents = await Promise.all(
     <Header />
   </Fragment>
 
-  <Profile />
+  <Profile
+    avatarLink="/note-profile.png"
+    description="知識網是由各個知識區塊互相連結，只有知識並不夠，我們還需要智慧，這樣才是完整的我。"
+  />
 
-  <Porse>
-    <div class="flex flex-col gap-4">
+  <div class="flex flex-col gap-4">
+    <div class="mx-4 p-4 rounded-md border border-slate-200 dark:border-slate-700">
+      <div class="flex justify-between align-middle">
+        <a class="text-xl font-bold hover:underline" href={`/notes/${lastNote.slug}`}
+          >{lastNote.data.title}</a
+        >
+        <p>{format(lastNote.data.pubDate, 'yyyy/MM/dd')}</p>
+      </div>
       {
-        noteContents.map(({ slug, pubDate, Content }) => (
-          <div class="mx-4 p-4 rounded-md border border-slate-200 dark:border-slate-700">
-            <a href={`/notes/${slug}`}>{format(pubDate, 'yyyy/MM/dd')}</a>
-            <Content />
+        lastNote.data.tags.length > 0 && (
+          <div class="mt-4">
+            {lastNote.data.tags.map((tag) => (
+              <Tag tag={tag} />
+            ))}
           </div>
-        ))
+        )
       }
+      <div class="mt-4">
+        <Porse>
+          <Content />
+        </Porse>
+      </div>
     </div>
-  </Porse>
+
+    {
+      restNotes.map(({ slug, data }) => (
+        <div class="mx-4 p-4 rounded-md border border-slate-200 dark:border-slate-700">
+          <div class="flex justify-between align-middle">
+            <a class="text-xl font-bold hover:underline" href={`/notes/${slug}`}>
+              {data.title}
+            </a>
+            <p>{format(data.pubDate, 'yyyy/MM/dd')}</p>
+          </div>
+          {data.tags.length > 0 && (
+            <div class="mt-4">
+              {lastNote.data.tags.map((tag) => (
+                <Tag tag={tag} />
+              ))}
+            </div>
+          )}
+        </div>
+      ))
+    }
+  </div>
 
   <Fragment slot="footer">
     <Footer />

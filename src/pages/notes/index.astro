@@ -13,9 +13,11 @@ const notes = await getCollection('notes').then((notes) =>
   notes.sort((a, b) => compareDesc(a.data.pubDate, b.data.pubDate))
 );
 
-const [lastNote, restNotes] = [notes[0], notes.slice(1)];
+const lastThreeNotes = await Promise.all(
+  notes.slice(0, 3).map((note) => note.render().then(({ Content }) => ({ Content, ...note })))
+);
 
-const { Content } = await lastNote.render();
+const restNotes = notes.slice(3);
 ---
 
 <PageLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -38,28 +40,30 @@ const { Content } = await lastNote.render();
   />
 
   <div class="flex flex-col gap-4">
-    <div class="mx-4 p-4 rounded-md border border-slate-200 dark:border-slate-700">
-      <div class="flex justify-between align-middle">
-        <a class="text-xl font-bold hover:underline" href={`/notes/${lastNote.slug}`}
-          >{lastNote.data.title}</a
-        >
-        <p>{format(lastNote.data.pubDate, 'yyyy/MM/dd')}</p>
-      </div>
-      {
-        lastNote.data.tags.length > 0 && (
-          <div class="mt-4">
-            {lastNote.data.tags.map((tag) => (
-              <Tag tag={tag} />
-            ))}
+    {
+      lastThreeNotes.map(({ Content, ...note }) => (
+        <div class="mx-4 p-4 rounded-md border border-slate-200 dark:border-slate-700">
+          <div class="flex justify-between align-middle">
+            <a class="text-xl font-bold hover:underline" href={`/notes/${note.slug}`}>
+              {note.data.title}
+            </a>
+            <p>{format(note.data.pubDate, 'yyyy/MM/dd')}</p>
           </div>
-        )
-      }
-      <div class="mt-4">
-        <Porse>
-          <Content />
-        </Porse>
-      </div>
-    </div>
+          {note.data.tags.length > 0 && (
+            <div class="mt-4 flex flex-wrap gap-x-2 gap-y-2">
+              {note.data.tags.map((tag) => (
+                <Tag tag={tag} />
+              ))}
+            </div>
+          )}
+          <div class="mt-4">
+            <Porse>
+              <Content />
+            </Porse>
+          </div>
+        </div>
+      ))
+    }
 
     {
       restNotes.map(({ slug, data }) => (
@@ -71,8 +75,8 @@ const { Content } = await lastNote.render();
             <p>{format(data.pubDate, 'yyyy/MM/dd')}</p>
           </div>
           {data.tags.length > 0 && (
-            <div class="mt-4">
-              {lastNote.data.tags.map((tag) => (
+            <div class="mt-4 flex flex-wrap gap-x-2 gap-y-2">
+              {data.tags.map((tag) => (
                 <Tag tag={tag} />
               ))}
             </div>

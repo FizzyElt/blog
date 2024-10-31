@@ -1,4 +1,4 @@
-import { z, defineCollection } from "astro:content";
+import { defineCollection, z } from "astro:content";
 
 const postsCollection = defineCollection({
   type: "content",
@@ -18,6 +18,7 @@ const notesCollection = defineCollection({
     title: z.string(),
     pubDate: z.date(),
     tags: z.array(z.string()),
+    draft: z.boolean().optional(),
   }),
 });
 

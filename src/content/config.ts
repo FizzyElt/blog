@@ -5,7 +5,6 @@ const postsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     pubDate: z.date(),
-
     description: z.string(),
     tags: z.array(z.string()),
     heroImage: z.string().optional(),
@@ -15,7 +14,8 @@ const postsCollection = defineCollection({
 const notesCollection = defineCollection({
   type: "content",
   schema: z.object({
-    title: z.string(),
+    id: z.number(),
+    title: z.string().optional(),
     pubDate: z.date(),
     tags: z.array(z.string()),
     draft: z.boolean().optional(),

@@ -18,6 +18,12 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<MarkdownPostLayout frontmatter={{ ...entry.data, heroImage: '/note-profile.png' }}>
+<MarkdownPostLayout
+  frontmatter={{
+    ...entry.data,
+    title: entry.data.title ?? `#${entry.data.id}`,
+    heroImage: '/note-profile.png',
+  }}
+>
   <Content />
 </MarkdownPostLayout>

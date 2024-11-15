@@ -38,7 +38,7 @@ const restNotes = notes.slice(3);
 
   <Profile
     avatarLink="/note-profile.png"
-    description="知識網是由各個知識區塊互相連結，只有知識並不夠，我們還需要智慧，這樣才是完整的我。"
+    description="知識網是由各個知識區塊互相連結，只有知識網並不夠，我們還需要智慧，這樣才是完整的我。"
   />
 
   <div class="flex flex-col gap-4">
@@ -47,7 +47,7 @@ const restNotes = notes.slice(3);
         <div class="mx-4 p-4 rounded-md border border-slate-200 dark:border-slate-700">
           <div class="flex justify-between align-middle">
             <a class="text-xl font-bold hover:underline" href={`/notes/${note.slug}`}>
-              {note.data.title}
+              {`#${note.data.id}`} {note.data.title}
             </a>
             <p>{format(note.data.pubDate, 'yyyy/MM/dd')}</p>
           </div>
@@ -72,7 +72,7 @@ const restNotes = notes.slice(3);
         <div class="mx-4 p-4 rounded-md border border-slate-200 dark:border-slate-700">
           <div class="flex justify-between align-middle">
             <a class="text-xl font-bold hover:underline" href={`/notes/${slug}`}>
-              {data.title}
+              {`#${data.id}`} {data.title}
             </a>
             <p>{format(data.pubDate, 'yyyy/MM/dd')}</p>
           </div>

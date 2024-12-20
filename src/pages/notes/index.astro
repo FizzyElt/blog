@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import { compareDesc, format } from 'date-fns';
 import Footer from '../../components/Footer.astro';
 import Header from '../../components/Header.astro';
@@ -16,7 +16,7 @@ const notes = await getCollection('notes').then((notes) =>
 );
 
 const lastThreeNotes = await Promise.all(
-  notes.slice(0, 3).map((note) => note.render().then(({ Content }) => ({ Content, ...note })))
+  notes.slice(0, 3).map((note) => render(note).then(({ Content }) => ({ Content, ...note })))
 );
 
 const restNotes = notes.slice(3);
@@ -46,7 +46,7 @@ const restNotes = notes.slice(3);
       lastThreeNotes.map(({ Content, ...note }) => (
         <div class="mx-4 p-4 rounded-md border border-slate-200 dark:border-slate-700">
           <div class="flex justify-between align-middle">
-            <a class="text-xl font-bold hover:underline" href={`/notes/${note.slug}`}>
+            <a class="text-xl font-bold hover:underline" href={`/notes/${note.id}`}>
               {`#${note.data.id}`} {note.data.title}
             </a>
             <p>{format(note.data.pubDate, 'yyyy/MM/dd')}</p>
@@ -68,10 +68,10 @@ const restNotes = notes.slice(3);
     }
 
     {
-      restNotes.map(({ slug, data }) => (
+      restNotes.map(({ id, data }) => (
         <div class="mx-4 p-4 rounded-md border border-slate-200 dark:border-slate-700">
           <div class="flex justify-between align-middle">
-            <a class="text-xl font-bold hover:underline" href={`/notes/${slug}`}>
+            <a class="text-xl font-bold hover:underline" href={`/notes/${id}`}>
               {`#${data.id}`} {data.title}
             </a>
             <p>{format(data.pubDate, 'yyyy/MM/dd')}</p>

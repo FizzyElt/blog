@@ -5,7 +5,6 @@ import { format } from 'date-fns';
 export interface PostProps {
   post: {
     id: string;
-    slug: string;
     body: string;
     collection: string;
     data: {
@@ -23,7 +22,7 @@ const { post } = Astro.props as PostProps;
 
 <section class="flex flex-col gap-y-2 py-6">
   <div class="flex items-center">
-    <a class="hover:underline" href={`/posts/${post.slug}`}>
+    <a class="hover:underline" href={`/posts/${post.id}`}>
       <h3 class="text-2xl">
         {post.data.title}
       </h3>

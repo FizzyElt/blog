@@ -24,7 +24,7 @@ import { Icon } from 'astro-icon/components';
     iconSunny?.style.setProperty('display', 'none');
   };
 
-  const hanleSetTheme = (mode: string) => {
+  const handleSetTheme = (mode: string) => {
     setIcon(mode);
     const isDark = mode === 'dark';
     if (isDark) {
@@ -40,13 +40,13 @@ import { Icon } from 'astro-icon/components';
   (() => {
     let mode = localStorage.getItem('theme') || '';
 
-    hanleSetTheme(mode);
+    handleSetTheme(mode);
 
     const btn = document.getElementById('theme-switch');
 
     btn?.addEventListener('click', () => {
       const newMode = mode === 'dark' ? 'light' : 'dark';
-      hanleSetTheme(newMode);
+      handleSetTheme(newMode);
       mode = newMode;
     });
   })();

@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primaryBgColor: colors.white,
+        primaryBgColor: colors.gray[50],
         primaryDarkBgColor: colors.gray[800],
       },
       typography: (theme) => ({
@@ -40,6 +40,8 @@ module.exports = {
             "--tw-prose-code-bg": theme("colors.neutral.300"),
             "--tw-prose-invert-code": theme("colors.neutral.200"),
             "--tw-prose-invert-code-bg": theme("colors.neutral.600"),
+            "--tw-prose-body": theme("colors.gray.900"),
+            "--tw-prose-invert-body": theme("colors.gray.100"),
             code: {
               color: "var(--tw-prose-code)",
               padding: "2px 4px",

@@ -20,7 +20,10 @@ export default defineConfig({
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],
     shikiConfig: {
-      theme: "one-dark-pro",
+      themes: {
+        light: "one-light",
+        dark: "one-dark-pro",
+      },
     },
   },
 });

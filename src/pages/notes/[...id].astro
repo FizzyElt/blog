@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import MarkdownPostLayout from '../../layouts/PostLayout.astro';
+import NoteHeader from '../../components/NoteHeader.astro';
 
 export const prerender = true;
 
@@ -25,5 +26,8 @@ const { Content } = await render(entry);
     heroImage: '/note-profile.png',
   }}
 >
+  <Fragment slot="header">
+    <NoteHeader />
+  </Fragment>
   <Content />
 </MarkdownPostLayout>

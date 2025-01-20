@@ -1,6 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { TWITTER_LINK, GITHUB_LINK, MASTODON_LINK, EMAIL } from '../config';
+
+const year = new Date().getFullYear();
 ---
 
 <footer class="py-8 px-4">
@@ -23,5 +25,10 @@ import { TWITTER_LINK, GITHUB_LINK, MASTODON_LINK, EMAIL } from '../config';
         <Icon name="mdi:mastodon" size={24} />
       </a>
     </div>
+  </div>
+  <div
+    class="py-4 max-w-screen-md container mx-auto flex items-center gap-y-2 sm:flex-row flex-col-reverse justify-center align-middle"
+  >
+    <p>Copyright &copy; {year}, FizzyElt</p>
   </div>
 </footer>

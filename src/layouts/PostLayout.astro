@@ -20,6 +20,10 @@ const {
 ---
 
 <MarkdownBaseLayout content={{ title, description, heroImage: heroImage }}>
+  <Fragment slot="header">
+    <slot name="header" />
+  </Fragment>
+
   <Fragment slot="before-content">
     <section class="flex flex-col gap-y-2">
       <h2 class="text-2xl font-bold">{title || ''}</h2>

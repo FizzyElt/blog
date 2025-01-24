@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import icon from "astro-icon";
 import cloudflare from "@astrojs/cloudflare";
 import tailwind from "@astrojs/tailwind";
+import sitemap from "@astrojs/sitemap";
 
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
@@ -15,7 +16,7 @@ export default defineConfig({
       enabled: true,
     },
   }),
-  integrations: [icon(), tailwind()],
+  integrations: [icon(), tailwind(), sitemap()],
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex],

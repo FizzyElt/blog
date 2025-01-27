@@ -1,0 +1,43 @@
+<script>
+  const setIcon = (mode: string) => {
+    const iconMoon = document.getElementsByClassName('theme-icon-moon');
+    const iconSunny = document.getElementsByClassName('theme-icon-sunny');
+    if (mode === 'dark') {
+      [...iconMoon].forEach((ele) => ele.classList.add('hidden'));
+      [...iconSunny].forEach((ele) => ele.classList.remove('hidden'));
+      return;
+    }
+
+    [...iconMoon].forEach((ele) => ele.classList.remove('hidden'));
+    [...iconSunny].forEach((ele) => ele.classList.add('hidden'));
+  };
+
+  const handleSetTheme = (mode: string) => {
+    setIcon(mode);
+    const isDark = mode === 'dark';
+    if (isDark) {
+      document.body.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      return;
+    }
+
+    document.body.classList.remove('dark');
+    localStorage.setItem('theme', 'light');
+  };
+
+  (() => {
+    let mode = localStorage.getItem('theme') || '';
+
+    handleSetTheme(mode);
+
+    const btns = document.getElementsByClassName('theme-switch');
+
+    const themeCallback = () => {
+      const newMode = mode === 'dark' ? 'light' : 'dark';
+      handleSetTheme(newMode);
+      mode = newMode;
+    };
+
+    [...btns].forEach((ele) => ele.addEventListener('click', themeCallback));
+  })();
+</script>

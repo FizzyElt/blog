@@ -1,6 +1,7 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import Container from '../containers/Container.astro';
+import ThemeScript from '../components/ThemeScript.astro';
 import '../styles/global.css';
 
 export interface Props {
@@ -30,5 +31,6 @@ const { title, description = '', image } = Astro.props;
 
       <slot name="footer" />
     </div>
+    <ThemeScript />
   </body>
 </html>

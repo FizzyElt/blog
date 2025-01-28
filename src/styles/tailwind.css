@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    /* background color */
+    --color-primary-bg-color: var(--color-gray-50);
+    --color-primary-dark-bg-color: var(--color-gray-800);
+}
+
+@layer utilities {
+    .prose {
+        --tw-prose-code: var(--color-neutral-700);
+        --tw-prose-code-bg: var(--color-neutral-300);
+        --tw-prose-invert-code: var(--color-neutral-200);
+        --tw-prose-invert-code-bg: var(--color-neutral-600);
+        --tw-prose-body: var(--color-gray-900);
+        --tw-prose-invert-body: var(--color-gray-100);
+    }
+}

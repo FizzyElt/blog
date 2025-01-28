@@ -3,6 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ThemeScript from '../components/ThemeScript.astro';
+import '../styles/tailwind.css';
 
 export interface Props {
   title: string;
@@ -26,7 +27,7 @@ const { title, description, heroImage } = Astro.props as Props;
   </head>
 
   <body class="">
-    <div class="w-full min-h-screen flex flex-col dark:bg-primaryDarkBgColor dark:text-white">
+    <div class="w-full min-h-screen flex flex-col dark:bg-primary-dark-bg-color dark:text-white">
       <Header />
 
       <main class="max-w-screen-md container mx-auto flex-auto py-6">

@@ -9,7 +9,8 @@
     "preview": "astro build && wrangler pages dev",
     "astro": "astro",
     "deploy": "astro build && wrangler pages deploy",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "new-note": "bun create_note.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -29,6 +30,7 @@
     "@cloudflare/workers-types": "^4.20250129.0",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.0.3",
+    "@types/bun": "^1.2.2",
     "tailwindcss": "^4.0.3",
     "wrangler": "^3.107.3"
   }
